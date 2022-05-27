@@ -109,6 +109,33 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        color: Colors.blue,
+        child: IconTheme(
+          data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
+          child: Row(
+            children: <Widget>[
+              IconButton(
+                tooltip: 'Open navigation menu',
+                icon: const Icon(Icons.menu),
+                onPressed: () {},
+              ),
+              IconButton(
+                tooltip: 'Search',
+                icon: const Icon(Icons.search),
+                onPressed: () {},
+              ),
+              IconButton(
+                tooltip: 'Favorite',
+                icon: const Icon(Icons.favorite),
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
