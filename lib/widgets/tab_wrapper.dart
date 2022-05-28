@@ -16,12 +16,13 @@ class TabWrapWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _controller = useTabController(initialLength: tabs.length);
+    final controller = useTabController(initialLength: tabs.length);
 
     useEffectOnce(() {
-      _controller.addListener(() {
-        changeTab(ref, _controller.index);
+      controller.addListener(() {
+        changeTab(ref, controller.index);
       });
+      return null;
     });
 
     return Column(
@@ -29,22 +30,29 @@ class TabWrapWidget extends HookConsumerWidget {
         Ink(
           color: Colors.blue,
           child: TabBar(
-            controller: _controller,
+            controller: controller,
             tabs: tabs,
-            // onTap: (index) {
-            //   changeTab(ref, index);
-            // },
           ),
         ),
         Expanded(
           child: TabBarView(
-            controller: _controller,
+            controller: controller,
             children: [
-              Center(
-                child: Text(
-                  'This is the ${ref.watch(countProvider)} tab',
-                  style: const TextStyle(fontSize: 36),
-                ),
+              Column(
+                children: <Widget>[
+                  Center(
+                    child: Text(
+                      'This is the ${ref.watch(countProvider)} tab',
+                      style: const TextStyle(fontSize: 36),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      'This is the ${ref.watch(countProvider)} tab',
+                      style: const TextStyle(fontSize: 36),
+                    ),
+                  ),
+                ],
               ),
               const Center(
                 child: Tab2Content(),
