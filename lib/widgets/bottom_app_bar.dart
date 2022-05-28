@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatelessWidget {
-  BottomBar({Key? key, required this.stateCheckStr}) : super(key: key);
+  const BottomBar({Key? key, required this.stateCheckStr}) : super(key: key);
   final String stateCheckStr;
 
   @override
