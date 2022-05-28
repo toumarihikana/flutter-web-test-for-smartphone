@@ -4,7 +4,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TextEditDialog extends HookConsumerWidget {
   final String initStr;
-  const TextEditDialog({required this.initStr, Key? key}) : super(key: key);
+  final BuildContext context1;
+  const TextEditDialog(
+      {required this.context1, required this.initStr, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,10 +24,11 @@ class TextEditDialog extends HookConsumerWidget {
       ),
       actions: [
         TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(textEditingController.text);
-            },
-            child: const Text("決定"))
+          onPressed: () {
+            Navigator.of(context1).pop(textEditingController.text);
+          },
+          child: const Text("決定"),
+        )
       ],
     );
   }

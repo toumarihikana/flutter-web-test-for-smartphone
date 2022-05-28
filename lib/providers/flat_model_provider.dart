@@ -7,7 +7,7 @@ class FlatModelNotifier extends StateNotifier<FlatModel> {
       : super(FlatModel(id: id, name: name, isCheck: false));
 
   void changeModel(String name) {
-    state = FlatModel(id: state.id++, name: name, isCheck: false);
+    state = FlatModel(id: ++state.id, name: name, isCheck: false);
   }
 }
 

@@ -38,8 +38,9 @@ class IncrementButton extends HookConsumerWidget {
       BuildContext context, String name) async {
     return showDialog(
         context: context,
-        builder: (BuildContext context) {
+        builder: (context) {
           return TextEditDialog(
+            context1: context,
             initStr: name,
           );
         });
