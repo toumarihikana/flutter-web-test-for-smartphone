@@ -71,7 +71,7 @@ class MyHomePage extends HookConsumerWidget {
         title: Text(title),
       ),
       body: const MainContents(),
-      floatingActionButton: const IncrementButton(),
+      floatingActionButton: IncrementButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       bottomNavigationBar: BottomBar(
         stateCheckStr: ref.watch(countProvider).toString(),
