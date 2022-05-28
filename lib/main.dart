@@ -113,8 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
           child: const Icon(Icons.add),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-        bottomNavigationBar:
-            const BottomBar() // This trailing comma makes auto-formatting nicer for build methods.
+        bottomNavigationBar: BottomBar(
+            stateCheckStr: _counter
+                .toString()) // This trailing comma makes auto-formatting nicer for build methods.
         );
   }
 }

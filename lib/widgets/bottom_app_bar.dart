@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatelessWidget {
-  const BottomBar({Key? key}) : super(key: key);
+  BottomBar({Key? key, required this.stateCheckStr}) : super(key: key);
+  final String stateCheckStr;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class BottomBar extends StatelessWidget {
               icon: const Icon(Icons.favorite),
               onPressed: () {},
             ),
+            Text.rich(TextSpan(text: stateCheckStr))
           ],
         ),
       ),
