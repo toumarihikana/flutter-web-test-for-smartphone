@@ -39,6 +39,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_hooks: ^0.18.4
   hooks_riverpod: ^1.0.4
+  flutter_use: ^0.0.2
+  flutter_hooks_lint_plugin: ^0.5.0
 
 dev_dependencies:
   flutter_test:

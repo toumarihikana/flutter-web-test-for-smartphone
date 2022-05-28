@@ -70,7 +70,9 @@ class MyHomePage extends HookConsumerWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: const MainContents(),
+      body: const SafeArea(
+        child: MainContents(),
+      ),
       floatingActionButton: IncrementButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       bottomNavigationBar: BottomBar(

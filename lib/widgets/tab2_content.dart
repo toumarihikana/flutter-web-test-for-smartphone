@@ -10,14 +10,18 @@ class Tab2Content extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final strList = ref.watch(strListProvider);
     return Center(
-      child: Column(
-        children: <Widget>[
-          for (int i = 0; i < strList.length; i++)
-            Text(
-              strList[i],
-              style: const TextStyle(fontSize: 36),
-            ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            for (int i = 0; i < strList.length; i++)
+              Card(
+                child: Text(
+                  strList[i],
+                  style: const TextStyle(fontSize: 36),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

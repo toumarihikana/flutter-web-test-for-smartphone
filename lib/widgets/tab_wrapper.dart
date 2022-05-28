@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_use/flutter_use.dart';
 import 'package:flutter_web_test_for_smartphone/providers/count_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -14,36 +16,43 @@ class TabWrapWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return DefaultTabController(
-      length: tabs.length,
-      child: Column(
-        children: <Widget>[
-          Ink(
-            color: Colors.blue,
-            child: TabBar(
-              tabs: tabs,
-              onTap: (index) {
-                changeTab(ref, index);
-              },
-            ),
+    final _controller = useTabController(initialLength: tabs.length);
+
+    useEffectOnce(() {
+      _controller.addListener(() {
+        changeTab(ref, _controller.index);
+      });
+    });
+
+    return Column(
+      children: <Widget>[
+        Ink(
+          color: Colors.blue,
+          child: TabBar(
+            controller: _controller,
+            tabs: tabs,
+            // onTap: (index) {
+            //   changeTab(ref, index);
+            // },
           ),
-          Expanded(
-            child: TabBarView(
-              children: [
-                Center(
-                  child: Text(
-                    'This is the ${ref.watch(countProvider)} tab',
-                    style: const TextStyle(fontSize: 36),
-                  ),
+        ),
+        Expanded(
+          child: TabBarView(
+            controller: _controller,
+            children: [
+              Center(
+                child: Text(
+                  'This is the ${ref.watch(countProvider)} tab',
+                  style: const TextStyle(fontSize: 36),
                 ),
-                const Center(
-                  child: Tab2Content(),
-                ),
-              ],
-            ),
+              ),
+              const Center(
+                child: Tab2Content(),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
