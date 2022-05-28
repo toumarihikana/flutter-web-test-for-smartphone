@@ -25,9 +25,16 @@ class TextEditDialog extends HookConsumerWidget {
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.pop(context, textEditingController.text);
+            Navigator.of(context, rootNavigator: true)
+                .pop(textEditingController.text);
           },
           child: const Text("決定"),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context1, textEditingController.text);
+          },
+          child: const Text("決定2"),
         )
       ],
     );
