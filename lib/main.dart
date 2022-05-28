@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_test_for_smartphone/providers/count_provider.dart';
+import 'package:flutter_web_test_for_smartphone/widgets/increment_button.dart';
 import 'package:flutter_web_test_for_smartphone/widgets/main_contets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -61,34 +62,18 @@ class MyHomePage extends HookConsumerWidget {
 
   final String title;
 
-  void _incrementCounter(WidgetRef ref) {
-    ref.read(countProvider.notifier).increment();
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(title),
       ),
       body: const MainContents(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (() => _incrementCounter(ref)),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: const IncrementButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       bottomNavigationBar: BottomBar(
         stateCheckStr: ref.watch(countProvider).toString(),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
