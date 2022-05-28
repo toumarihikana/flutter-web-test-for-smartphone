@@ -4,9 +4,11 @@ import 'package:flutter_web_test_for_smartphone/widgets/increment_button.dart';
 import 'package:flutter_web_test_for_smartphone/widgets/main_contets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'platform/export/url_strategy_export.dart';
 import 'widgets/bottom_app_bar.dart';
 
 void main() {
+  commonSetUrlStrategy();
   runApp(
     const ProviderScope(
       child: MyApp(),
