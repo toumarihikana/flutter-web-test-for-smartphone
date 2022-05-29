@@ -45,7 +45,7 @@ class EditTextDialog extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AlertDialog(
-      title: Text(title + 'context'),
+      title: Text(title + 'onFieldSubmitted'),
       content: TextFormField(
         controller: _textEditingController,
         autofocus: true,
@@ -55,6 +55,9 @@ class EditTextDialog extends HookConsumerWidget {
             return "Empty!";
           }
           return null;
+        },
+        onFieldSubmitted: (_) {
+          Navigator.of(context).pop(_textEditingController.text);
         },
       ),
       actions: [
