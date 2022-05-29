@@ -37,7 +37,7 @@ class EditTextDialog extends HookConsumerWidget {
   Future<String?> show(BuildContext context) async {
     return showDialog<String>(
         context: context,
-        builder: (_) {
+        builder: (context) {
           return this;
         });
   }
@@ -45,7 +45,7 @@ class EditTextDialog extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AlertDialog(
-      title: Text(title),
+      title: Text(title + 'context'),
       content: TextFormField(
         controller: _textEditingController,
         autofocus: true,
