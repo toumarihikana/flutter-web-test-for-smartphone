@@ -24,25 +24,16 @@ class IncrementButton extends HookConsumerWidget {
 
   Future<void> tapAction(BuildContext context, WidgetRef ref) async {
     // ダイアログの外をタップするとダイアログから文字が帰ってこないのでfailになる。
-    String? name = await showEditDialog(context, '初期値') ?? 'fail';
-    ref.read(flatModelrovider.notifier).changeModel(name);
+    // String? name = await showEditDialog(context, '初期値') ?? 'fail';
+    var builder = TextEditDialog.builder("Add Board");
+    builder.submit = "Create";
+    var boardName = await builder.build().show(context);
+    ref.read(flatModelrovider.notifier).changeModel(boardName!);
     if (ref.read(tabIndexProvider) == 0) {
       ref.read(countProvider.notifier).increment();
     } else if (ref.read(tabIndexProvider) == 1) {
       c.value++;
       ref.read(strListProvider.notifier).add(str: c.value.toString());
     }
-  }
-
-  static Future<String?> showEditDialog(
-      BuildContext context, String name) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return TextEditDialog(
-            context1: context,
-            initStr: name,
-          );
-        });
   }
 }
