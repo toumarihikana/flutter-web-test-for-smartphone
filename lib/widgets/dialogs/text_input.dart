@@ -34,7 +34,7 @@ class EditTextDialog extends HookConsumerWidget {
     return EditTextDialogBuilder(title);
   }
 
-  Future<String?> show(BuildContext context) {
+  Future<String?> show(BuildContext context) async {
     return showDialog<String>(
         context: context,
         builder: (_) {
