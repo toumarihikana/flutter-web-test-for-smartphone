@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class EditTextDialogBuilder {
@@ -10,24 +10,19 @@ class EditTextDialogBuilder {
 
   EditTextDialogBuilder(this.title);
 
-  TextEditDialog build() {
-    return TextEditDialog._builder(this);
+  EditTextDialog build() {
+    return EditTextDialog._builder(this);
   }
 }
 
-class TextEditDialog extends HookConsumerWidget {
-  // final String initStr;
-  // final BuildContext context1;
-  // const TextEditDialog(
-  //     {required this.context1, required this.initStr, Key? key})
-  //     : super(key: key);
+class EditTextDialog extends HookConsumerWidget {
   final String title;
   final String cancel;
   final String submit;
   final String initialValue;
   final TextEditingController _textEditingController;
 
-  TextEditDialog._builder(EditTextDialogBuilder builder)
+  EditTextDialog._builder(EditTextDialogBuilder builder)
       : title = builder.title,
         submit = builder.submit,
         cancel = builder.cancel,
@@ -39,40 +34,42 @@ class TextEditDialog extends HookConsumerWidget {
     return EditTextDialogBuilder(title);
   }
 
-  Future<String?> show(BuildContext context) async {
+  Future<String?> show(BuildContext context) {
     return showDialog<String>(
         context: context,
-        builder: (context) {
+        builder: (_) {
           return this;
         });
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final focusNode = useFocusNode();
-    // final textEditingController = useTextEditingController(text: initStr);
     return AlertDialog(
+      title: Text(title),
       content: TextFormField(
-        autofocus: true,
-        focusNode: focusNode,
         controller: _textEditingController,
-        onFieldSubmitted: (_) {
-          Navigator.of(context).pop(_textEditingController.text);
+        autofocus: true,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        validator: (v) {
+          if (v == null || v.isEmpty) {
+            return "Empty!";
+          }
+          return null;
         },
       ),
       actions: [
-        TextButton(
+        OutlinedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text(cancel),
+        ),
+        ElevatedButton(
           onPressed: () {
             Navigator.of(context).pop(_textEditingController.text);
           },
           child: Text(submit),
         ),
-        // TextButton(
-        //   onPressed: () {
-        //     Navigator.of(context).popUntil(ModalRoute.withName('/'));
-        //   },
-        //   child: const Text("決定2"),
-        // )
       ],
     );
   }

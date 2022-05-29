@@ -23,7 +23,7 @@ class MainPage extends HookConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (() async {
-          var builder = TextEditDialog.builder("Add Board");
+          var builder = EditTextDialog.builder("Add Board");
           builder.submit = "Create1";
           var boardName = await builder.build().show(context);
           if (boardName == null || boardName.isEmpty) {
@@ -41,18 +41,18 @@ class MainPage extends HookConsumerWidget {
     );
   }
 
-  Future<void> tapAction(BuildContext context, WidgetRef ref) async {
-    // ダイアログの外をタップするとダイアログから文字が帰ってこないのでfailになる。
-    // String? name = await showEditDialog(context, '初期値') ?? 'fail';
-    var builder = TextEditDialog.builder("Add Board");
-    builder.submit = "Create";
-    var boardName = await builder.build().show(context);
-    // ref.read(flatModelrovider.notifier).changeModel(boardName!);
-    if (ref.read(tabIndexProvider) == 0) {
-      ref.read(countProvider.notifier).increment();
-    } else if (ref.read(tabIndexProvider) == 1) {
-      //   c++;
-      //   ref.read(strListProvider.notifier).add(str: c.toString());
-    }
-  }
+  // Future<void> tapAction(BuildContext context, WidgetRef ref) async {
+  //   // ダイアログの外をタップするとダイアログから文字が帰ってこないのでfailになる。
+  //   // String? name = await showEditDialog(context, '初期値') ?? 'fail';
+  //   var builder = EditTextDialog.builder("Add Board");
+  //   builder.submit = "Create";
+  //   var boardName = await builder.build().show(context);
+  //   // ref.read(flatModelrovider.notifier).changeModel(boardName!);
+  //   if (ref.read(tabIndexProvider) == 0) {
+  //     ref.read(countProvider.notifier).increment();
+  //   } else if (ref.read(tabIndexProvider) == 1) {
+  //     //   c++;
+  //     //   ref.read(strListProvider.notifier).add(str: c.toString());
+  //   }
+  // }
 }
