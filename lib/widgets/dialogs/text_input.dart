@@ -67,12 +67,12 @@ class TextEditDialog extends HookConsumerWidget {
           },
           child: Text(submit),
         ),
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).popUntil(ModalRoute.withName('/'));
-          },
-          child: const Text("決定2"),
-        )
+        // TextButton(
+        //   onPressed: () {
+        //     Navigator.of(context).popUntil(ModalRoute.withName('/'));
+        //   },
+        //   child: const Text("決定2"),
+        // )
       ],
     );
   }
