@@ -22,7 +22,14 @@ class MainPage extends HookConsumerWidget {
         child: MainContents(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (() => tapAction(context, ref)),
+        onPressed: (() async {
+          var builder = TextEditDialog.builder("Add Board");
+          builder.submit = "Create1";
+          var boardName = await builder.build().show(context);
+          if (boardName == null || boardName.isEmpty) {
+            return;
+          }
+        }),
         tooltip: 'External Increment',
         child: const Icon(Icons.add),
       ),

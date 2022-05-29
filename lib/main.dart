@@ -37,51 +37,51 @@ class MyApp extends HookConsumerWidget {
       //       MyHomePage(title: 'Flutter Demo Home Page with named')
       // },
       // initialRoute: '/'
-      home: MainPage(),
+      home: const MainPage(),
     );
   }
 }
 
-class MyHomePage extends HookConsumerWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+// class MyHomePage extends HookConsumerWidget {
+//   MyHomePage({Key? key, required this.title}) : super(key: key);
 
-  final String title;
-  int c = 0;
+//   final String title;
+//   int c = 0;
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: const SafeArea(
-        child: MainContents(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (() => tapAction(context, ref)),
-        tooltip: 'External Increment',
-        child: const Icon(Icons.add),
-      ),
-      // IncrementButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
-      bottomNavigationBar: BottomBar(
-        stateCheckStr: ref.watch(countProvider).toString(),
-      ),
-    );
-  }
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(title),
+//       ),
+//       body: const SafeArea(
+//         child: MainContents(),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: (() => tapAction(context, ref)),
+//         tooltip: 'External Increment',
+//         child: const Icon(Icons.add),
+//       ),
+//       // IncrementButton(),
+//       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
+//       bottomNavigationBar: BottomBar(
+//         stateCheckStr: ref.watch(countProvider).toString(),
+//       ),
+//     );
+//   }
 
-  Future<void> tapAction(BuildContext context, WidgetRef ref) async {
-    // ダイアログの外をタップするとダイアログから文字が帰ってこないのでfailになる。
-    // String? name = await showEditDialog(context, '初期値') ?? 'fail';
-    var builder = TextEditDialog.builder("Add Board");
-    builder.submit = "Create";
-    var boardName = await builder.build().show(context);
-    // ref.read(flatModelrovider.notifier).changeModel(boardName!);
-    if (ref.read(tabIndexProvider) == 0) {
-      ref.read(countProvider.notifier).increment();
-    } else if (ref.read(tabIndexProvider) == 1) {
-      c++;
-      ref.read(strListProvider.notifier).add(str: c.toString());
-    }
-  }
-}
+//   Future<void> tapAction(BuildContext context, WidgetRef ref) async {
+//     // ダイアログの外をタップするとダイアログから文字が帰ってこないのでfailになる。
+//     // String? name = await showEditDialog(context, '初期値') ?? 'fail';
+//     var builder = TextEditDialog.builder("Add Board");
+//     builder.submit = "Create";
+//     var boardName = await builder.build().show(context);
+//     // ref.read(flatModelrovider.notifier).changeModel(boardName!);
+//     if (ref.read(tabIndexProvider) == 0) {
+//       ref.read(countProvider.notifier).increment();
+//     } else if (ref.read(tabIndexProvider) == 1) {
+//       c++;
+//       ref.read(strListProvider.notifier).add(str: c.toString());
+//     }
+//   }
+// }
