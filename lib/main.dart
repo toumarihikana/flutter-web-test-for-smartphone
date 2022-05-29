@@ -22,25 +22,68 @@ void main() {
   );
 }
 
+final FutureProvider initialProvider = FutureProvider((ref) async {
+  // await Dao().initialize();
+  // final packageInfo = ref.read(ConfigProvider.packageInfoProvider).value;
+  // var config = await Dao().config();
+  // if (config != null) {
+  //   ref.read(ConfigProvider.configProvider.notifier).state = config;
+  // }
+});
+
 class MyApp extends HookConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
-      title: 'Flutter Demoo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // routes: {
-      //   '/': (context) =>
-      //       MyHomePage(title: 'Flutter Demo Home Page with named')
-      // },
-      // initialRoute: '/'
-      home: const MainPage(),
+    var initial = ref.watch(initialProvider);
+    return initial.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (err, stack) {
+        return Center(child: Text("$err \n Chrome plz!"));
+      },
+      data: (config) {
+        // var themeModeValue = ref.watch(
+        //     ConfigProvider.configProvider.select((value) => value.themeMode));
+        var themeData = ThemeData(
+          // textTheme: kIsWeb
+          //     ? GoogleFonts.sawarabiGothicTextTheme(Theme.of(context).textTheme)
+          //     : null,
+          primarySwatch: Colors.orange,
+        );
+        return MaterialApp(
+          title: "kanban memo",
+          theme: themeData,
+          darkTheme: ThemeData.dark(),
+          // themeMode: themeModeValue,
+          debugShowCheckedModeBanner: false,
+          home: const MainPage(),
+        );
+      },
     );
   }
 }
+
+
+// class MyApp extends HookConsumerWidget {
+//   const MyApp({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     return MaterialApp(
+//       title: 'Flutter Demoo',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       // routes: {
+//       //   '/': (context) =>
+//       //       MyHomePage(title: 'Flutter Demo Home Page with named')
+//       // },
+//       // initialRoute: '/'
+//       home: const MainPage(),
+//     );
+//   }
+// }
 
 // class MyHomePage extends HookConsumerWidget {
 //   MyHomePage({Key? key, required this.title}) : super(key: key);
