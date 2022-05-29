@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -44,8 +45,9 @@ class EditTextDialog extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final focusNode = useFocusNode();
     return AlertDialog(
-      title: Text(title + 'onFieldSubmitted'),
+      title: Text(title + 'useFocusNode'),
       content: TextFormField(
         controller: _textEditingController,
         autofocus: true,
