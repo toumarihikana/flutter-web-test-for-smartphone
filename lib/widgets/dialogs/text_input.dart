@@ -32,7 +32,7 @@ class TextEditDialog extends HookConsumerWidget {
         ),
         TextButton(
           onPressed: () {
-            Navigator.pop(context1, textEditingController.text);
+            Navigator.of(context).popUntil(ModalRoute.withName('/'));
           },
           child: const Text("決定2"),
         )
