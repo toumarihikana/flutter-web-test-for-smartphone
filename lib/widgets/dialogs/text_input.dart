@@ -47,10 +47,10 @@ class EditTextDialog extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final focusNode = useFocusNode();
     return AlertDialog(
-      title: Text(title + 'focusNode'),
+      title: Text(title + 'autofocus'),
       content: TextFormField(
         controller: _textEditingController,
-        autofocus: true,
+        // autofocus: true,
         focusNode: focusNode,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: (v) {
